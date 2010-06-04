@@ -5,7 +5,7 @@
 %%%           disk_log_h as the handler.  Almost like the sasl error logger,
 %%%           but formats the logs to ascii instead of binary.
 %%%
-%%%           Use in supervisor as e.g. 
+%%%           Use in supervisor as e.g.
 %%%             {logger, {logger, start_link, []},
 %%%              permanent, 2000, worker, [logger]},
 %%%
@@ -20,7 +20,7 @@
 %%%          error_logger,
 %%%          {disk_log_h, logger},
 %%%          disk_log_h:init(fun logger:form_no_progress/1, Opts)).
-%%%    
+%%%
 %%%    test() ->
 %%%        error_logger:error_msg("testing ~p\n", [self()]).
 %%%
@@ -171,7 +171,7 @@ form_func(_)   -> {?MODULE, form_no_progress}.
 form_all({_Type, GL, _Msg}) when node(GL) /= node() ->
     false;
 form_all(Event) ->
-    Str = 
+    Str =
 	case Event of
 	    {error_report, _GL, {Pid, Type, Report}} ->
 		[mk_hdr("ERROR REPORT", Type, Pid),
@@ -210,12 +210,12 @@ form_all(Event) ->
     list_to_binary([Str, "\n"]).
 
 mk_hdr(HStr, Type, Who) ->
-    ["== ", t2s(erlang:localtime()), " == ", HStr, " - ", 
+    ["== ", t2s(erlang:localtime()), " == ", HStr, " - ",
      pstr(Type), " ", pstr(Who), "\n"].
 
 pstr(undefined) -> "";
 pstr(T) -> io_lib:format("~p", [T]).
-   
+
 
 nobin(B) when is_binary(B), size(B) > 1024 ->
     <<ShortBin:32/binary, _/binary>> = B,
@@ -269,7 +269,7 @@ get_error_logger_mf() ->
 	    Mf
     end.
 
-get_mf() -> 
+get_mf() ->
     File = get_mf_file(),
     MaxB = get_mf_maxb(),
     MaxF = get_mf_maxf(),
@@ -297,7 +297,7 @@ get_mf_maxf() ->
 	{ok, Bad} -> exit({bad_config, {error_logger_mf_maxfiles, Bad}})
     end.
 
-%% Restart the node. 
+%% Restart the node.
 %% If -heart flag is set reboot otherwise restart.
 restart() ->
     case init:get_argument(heart) of
