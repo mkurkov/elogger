@@ -120,7 +120,7 @@ init([Func, Opts]) ->
 %% Func: handle_event/2
 %% Returns: {ok, S}                                |
 %%          {swap_handler, Args1, S1, Mod2, Args2} |
-%%          remove_handler                              
+%%          remove_handler
 %%----------------------------------------------------------------------
 handle_event(Event, S) ->
     case (S#state.func)(Event) of
@@ -145,7 +145,7 @@ handle_event(Event, S) ->
 %% Func: handle_call/2
 %% Returns: {ok, Reply, S}                                |
 %%          {swap_handler, Reply, Args1, S1, Mod2, Args2} |
-%%          {remove_handler, Reply}                            
+%%          {remove_handler, Reply}
 %%----------------------------------------------------------------------
 handle_call(info, S) ->
     Reply = disk_log:do_info(get(log), S#state.cnt),
@@ -157,7 +157,7 @@ handle_call({change_size, NewSize}, S) ->
 %% Func: handle_info/2
 %% Returns: {ok, S}                                |
 %%          {swap_handler, Args1, S1, Mod2, Args2} |
-%%          remove_handler                              
+%%          remove_handler
 %%----------------------------------------------------------------------
 handle_info({emulator, GL, Chars}, S) ->
     %% this is very unfortunate...
