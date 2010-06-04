@@ -207,7 +207,7 @@ form_all(Event) ->
 		[mk_hdr("UNKNOWN", undefined, undefined),
 		 io_lib:format("~p\n", [Event])]
 	end,
-    list_to_binary([Str, "\n"]).
+    unicode:characters_to_binary([Str, "\n"]).
 
 mk_hdr(HStr, Type, Who) ->
     ["== ", t2s(erlang:localtime()), " == ", HStr, " - ",
